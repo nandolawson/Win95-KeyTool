@@ -71,7 +71,8 @@ fn validate_product_key(product_key: &str) -> bool {
 		) ||
 		((3..=9)
 			.contains(&(block_a / 111)) &&
-			block_a % 111 == 0) ||
+		block_a % 111 == 0
+		) ||
 		(product_key
 			.chars()
 			.nth(3) != Some('-')
