@@ -1,8 +1,25 @@
 # Win95 Key Tool
 [![Build](https://github.com/nandolawson/Win95-KeyTool/actions/workflows/build.yml/badge.svg)](https://github.com/nandolawson/Win95-KeyTool/actions/workflows/build.yml)
 
-This software is a cross-plattform generator and validator for Windows 95 and NT 4.0 keys written in Rust. It is only sporadically developed as it is solely a learning project for me and does not have particularly significant practical use.
+This software originally was a cross-plattform generator and validator for Windows 95 keys written in Rust. As it turned out, however, it supposedly works for all Microsoft products that require a product key in the following format: XXX-XXXXXXX
+It is only sporadically developed as it is solely a learning project for me and does not have particularly significant practical use.
 >⚠️ **Note**: Win95 Key Tool and I are in no way associated with Microsoft or their products. Only publicly available information from the internet has been used. It neither bypasses effective copy measures nor constitutes a "crack." The purpose of this repository, from my perspective, is solely to gain experience in programming and enhance my skills and knowledge.
+# Compatible Software
+ - Access ADI 95
+ - Hell Bender
+ - Office 7.0b
+ - Office Professional 95
+ - Plus! 95
+ - Plus! 98
+ - Return to Arcade
+ - Windows 95
+ - Windows CE Toolkit for Visual Basic 5
+ - Windows CE Toolkit for Visual C++ 5
+ - Windows NT 4.0 Server
+ - Windows NT 4.0 Workstation
+ - Visual Basic Standard 4.0
+ - Visual SourceSafe 4.0
+
 # Usage
 To use the software, it needs to be launched via a terminal. There are two options:
 ## Generate

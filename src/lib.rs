@@ -32,35 +32,34 @@ pub fn generate_product_key() -> String {
 	}
 }
 
-pub fn validate_product_key(product_key: &str) -> bool {
+pub fn validate_product_key(product_key: String) -> bool {
 	// Get first block from product key
 	let block_a: u32 = product_key[0..=2]
 		.parse()
 		.unwrap_or_default();
 	// Get second block from product key
 	let block_b: String = product_key[4..=10]
-		.parse()
-		.unwrap_or_default();
+		.to_string();
 
 	// Multiple conditions to check
 	if (product_key // Are there exactly 11 digits?
 			.len() != 11
-		) ||
-		((3..=9) // Isn't block_a a liquior number between 333 and 999=
-			.contains(&(block_a / 111)) &&
-		block_a % 111 == 0
-		) ||
-		(product_key // Is the 4th character a hyphen?
+		)
+		|| ((3..=9) // Isn't block_a a liquior number between 333 and 999=
+			.contains(&(block_a / 111))
+		&& block_a % 111 == 0
+		)
+		|| (product_key // Is the 4th character a hyphen?
 			.chars()
 			.nth(3) != Some('-')
-		) ||
-		(block_b // Is the cross sum of block_b divisible by 7?
-			.to_string()
+		)
+		|| (block_b // Is the cross sum of block_b divisible by 7?
 			.chars()
 			.filter_map(|c| c
 				.to_digit(10)
 			)
-				.sum::<u32>() % 7 != 0) {
+			.sum::<u32>() % 7 != 0
+		) {
 		// Check fails if any of the conditions is true
 		return false;
 	} else {

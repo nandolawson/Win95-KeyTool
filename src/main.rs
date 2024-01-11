@@ -19,12 +19,12 @@ fn main() {
 
 	// Load argument into variable and check if it is called "generate"
 	// Everything else will be checked if it is a valid product key
-	let product_key: &str = args[1]
-		.as_str();
+	let product_key: String = args[1]
+		.to_string();
 	if product_key == "generate" {
 		println!("Windows 95 key: {}", generate_product_key());
 	}
-	else if validate_product_key(product_key) {
+	else if validate_product_key(product_key.clone()) {
 		println!("Valid key: {}", product_key);
 	}
 	else {
