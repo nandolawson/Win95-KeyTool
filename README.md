@@ -2,6 +2,7 @@
 [![Build](https://github.com/nandolawson/Win95-KeyTool/actions/workflows/build.yml/badge.svg)](https://github.com/nandolawson/Win95-KeyTool/actions/workflows/build.yml)
 
 This software originally was a cross-plattform generator and validator for Windows 95 keys written in Rust. As it turned out, however, it supposedly works for all Microsoft products that require a product key in the following format: XXX-XXXXXXX
+
 It is only sporadically developed as it is solely a learning project for me and does not have particularly significant practical use.
 >⚠️ **Note**: Win95 Key Tool and I are in no way associated with Microsoft or their products. Only publicly available information from the internet has been used. It neither bypasses effective copy measures nor constitutes a "crack." The purpose of this repository, from my perspective, is solely to gain experience in programming and enhance my skills and knowledge.
 # Compatible Software
