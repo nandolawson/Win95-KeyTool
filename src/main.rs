@@ -12,12 +12,7 @@ fn main() {
 	// Check how many arguments are available
 	if args
 		.len() != 2 {
-		eprintln!("
-			\nAuthor: {}
-			\nVersion: {}
-			\n
-			\nUsage: {} <product key> / generate
-			\n",
+		eprintln!("\nAuthor: {}\nVersion: {}\n\nUsage: {} <product key> / generate\n",
 			env!("CARGO_PKG_VERSION"),
 			env!("CARGO_PKG_AUTHORS"),
 			args[0]
