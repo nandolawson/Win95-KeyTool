@@ -33,10 +33,11 @@ To check the validity of a key, you can use it as an argument. This can be done 
 ```
 .\<PATH_TO_EXECUTABLE\win95-keytool.exe 012-3456789
 ```
-# Limits
+# Limititations
 - Currently, only standard Windows 95 keys are supported. OEM keys, for example, are not supported.
 - If a key is not properly formatted _(XXX-XXXXXXX)_ during validation, the software considers it invalid, even though that might not necessarily be the case.
 - Only a single key can be validated per command.
+- At the moment, only keys whose blocks begin with a 0 cannot be generated or validated.
 # To-Do
 - Clean up and optimize the source code and make it more readable
 - Implement an option to validate multiple keys with a single command
