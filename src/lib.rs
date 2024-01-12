@@ -6,11 +6,9 @@ pub fn generate_product_key() -> String {
 		// Generate first block of the product key
 		let block_a: u32 = rng
 			.gen_range(100..=998);
-
 		// Check if it matches all rules
 		if validate_block_a(block_a) {
 			loop {
-
 				// Generate second block of the product key
 				let block_b: u32 = rng
 					.gen_range(1111111..=8888888);
@@ -35,51 +33,40 @@ pub fn validate_product_key(product_key: String) -> bool {
 		let block_b: u32 = product_key[4..=10]
 			.parse()
 			.unwrap_or_default();
-
 		// Multiple conditions to check
-		match (
+		return match (
 			validate_block_a(block_a),
 			validate_block_b(block_b)
 		) {
-			(true, true) => return true,
-			_ => return false,
-		}
-	} else {
-		return false;
-	}
+			(true, true) => true, _ => false,}
+	} else {return false;}
 }
 
 fn validate_block_a(block_a: u32) -> bool {
-	match (
+	return match (
 		block_a.to_string().len() == 3,
 		block_a % 111 != 0
 		|| block_a / 111 < 3
 		|| block_a / 111 > 9,
-	) {
-		(true, true) => return true,
-		_ => return false,
-	}
+	) {(true, true) => true, _ => false,}
 }
 
 fn validate_block_b(block_b: u32) -> bool {
-	match (
+	return match (
 		block_b.to_string().len() == 7,
 		block_b
 			.to_string()
 			.chars()
 			.filter_map(|c| c.to_digit(10))
 			.sum::<u32>() % 7 == 0,
-	) {
-		(true, true) => true,
-		_ => false,
-	}
+	) {(true, true) => true,_ => false,}
 }
 
 fn validate_format(product_key: String) -> bool {
-	if product_key // Are there exactly 11 digits?
-		.len() == 11
-	&& product_key // Is the 4th character a hyphen?
-		.chars()
-		.nth(3) == Some('-')
-	{return true;} else {return false;}
+	return match (
+		product_key.len() == 11,
+		product_key
+			.chars()
+			.nth(3) == Some('-'),
+	) {(true, true) => true, _ => false,};
 }

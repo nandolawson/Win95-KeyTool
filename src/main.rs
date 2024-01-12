@@ -9,14 +9,12 @@ fn main() {
 	let args: Vec<String> = env::args()
 		.collect();
 	println!("[Win95 Key Tool]");
-
 	// Check how many arguments are available
 	if args
 		.len() != 2 {
 		eprintln!("\nAuthor: {}\nVersion: {}\n\nUsage: {} <product key> / generate", env!("CARGO_PKG_VERSION"), env!("CARGO_PKG_AUTHORS"), args[0]);
 		std::process::exit(1);
 	}
-
 	// Load argument into variable and check if it is called "generate"
 	// Everything else will be checked if it is a valid product key
 	let product_key: String = args[1]
