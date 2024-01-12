@@ -26,23 +26,26 @@ pub fn generate_product_key() -> String {
 }
 
 pub fn validate_product_key(product_key: String) -> bool {
-	// Get first block from product key
-	let block_a: u32 = product_key[0..=2]
-		.parse()
-		.unwrap_or_default();
-	// Get second block from product key
-	let block_b: u32 = product_key[4..=10]
-		.parse()
-		.unwrap_or_default();
+	if validate_format(product_key.clone()) == true {
+		// Get first block from product key
+		let block_a: u32 = product_key[0..=2]
+			.parse()
+			.unwrap_or_default();
+		// Get second block from product key
+		let block_b: u32 = product_key[4..=10]
+			.parse()
+			.unwrap_or_default();
 
-	// Multiple conditions to check
-	match (
-		validate_format(product_key),
-		validate_block_a(block_a),
-		validate_block_b(block_b)
-	) {
-		(true, true, true) => return true,
-		_ => return false,
+		// Multiple conditions to check
+		match (
+			validate_block_a(block_a),
+			validate_block_b(block_b)
+		) {
+			(true, true) => return true,
+			_ => return false,
+		}
+	} else {
+		return false;
 	}
 }
 
@@ -59,17 +62,17 @@ fn validate_block_a(block_a: u32) -> bool {
 }
 
 fn validate_block_b(block_b: u32) -> bool {
-	if block_b // Are there exactly 7 digits?
-		.to_string()
-		.len() == 7
-	&& block_b // Is the cross sum of block_b divisible by 7?
-		.to_string()
-		.chars()
-		.filter_map(|c| c
-			.to_digit(10)
-		)
-		.sum::<u32>() % 7 == 0
-	{return true;} else {return false;}
+	match (
+		block_b.to_string().len() == 7,
+		block_b
+			.to_string()
+			.chars()
+			.filter_map(|c| c.to_digit(10))
+			.sum::<u32>() % 7 == 0,
+	) {
+		(true, true) => true,
+		_ => false,
+	}
 }
 
 fn validate_format(product_key: String) -> bool {

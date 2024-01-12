@@ -13,7 +13,7 @@ fn main() {
 	// Check how many arguments are available
 	if args
 		.len() != 2 {
-		eprintln!("Usage: {} <product key> / generate", args[0]);
+		eprintln!("\nAuthor: {}\nVersion: {}\n\nUsage: {} <product key> / generate", env!("CARGO_PKG_VERSION"), env!("CARGO_PKG_AUTHORS"), args[0]);
 		std::process::exit(1);
 	}
 
