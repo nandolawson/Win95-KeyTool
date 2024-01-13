@@ -32,13 +32,13 @@ jobs:
       - name: Prepare saving build
         run: |
             mkdir -p target/build
-            mv "target/x86_64-pc-windows-msvc/release/win95-keytool.exe" "target/build/${{ github.repository }} (${{ runner.os }} x86).exe"
-            mv "target/aarch64-pc-windows-msvc/release/win95-keytool.exe" "target/build/${{ github.repository }} (${{ runner.os }} ARM).exe"
+            mv "target/x86_64-pc-windows-msvc/release/win95-keytool.exe" "target/build/Win95-KeyTool (${{ runner.os }} x86).exe"
+            mv "target/aarch64-pc-windows-msvc/release/win95-keytool.exe" "target/build/Win95-KeyTool (${{ runner.os }} ARM).exe"
       - name: Save build
         uses: actions/cache@v3
         with:
           path: target/build
-          key: Build
+          key: Build ${{ runner.os }}
   macos:
     name: macOS
     runs-on: macos-latest
@@ -56,13 +56,13 @@ jobs:
       - name: Prepare saving build
         run: |
             mkdir -p target/build
-            mv "target/x86_64-apple-darwin/release/win95-keytool" "target/build/${{ github.repository }} (${{ runner.os }} x86)"
-            mv "target/aarch64-apple-darwin/release/win95-keytool" "target/build/${{ github.repository }} (${{ runner.os }} ARM)"
+            mv "target/x86_64-apple-darwin/release/win95-keytool" "target/build/Win95-KeyTool (${{ runner.os }} x86)"
+            mv "target/aarch64-apple-darwin/release/win95-keytool" "target/build/Win95-KeyTool (${{ runner.os }} ARM)"
       - name: Save build
         uses: actions/cache@v3
         with:
           path: target/build
-          key: Build
+          key: Build ${{ runner.os }}
   linux:
     name: Linux
     runs-on: ubuntu-latest
@@ -78,9 +78,9 @@ jobs:
       - name: Prepare saving build
         run: |
             mkdir -p target/build
-            mv "target/x86_64-unknown-linux-gnu/release/win95-keytool" "target/build/${{ github.repository }} (${{ runner.os }} x86)"
+            mv "target/x86_64-unknown-linux-gnu/release/win95-keytool" "target/build/Win95-KeyTool (${{ runner.os }} x86)"
       - name: Save build
         uses: actions/cache@v3
         with:
           path: target/build
-          key: Build
+          key: Build ${{ runner.os }}
