@@ -1,6 +1,20 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - '**/*'
+      - '!README.md'
+      - '!LICENSE'
+      - '!**/.gitignore'
+      - '!**/.github/workflows/release.yml'
+  pull_request:
+    paths:
+      - '**/*'
+      - '!README.md'
+      - 'LICENSE'
+      - '!**/.gitignore'
+      - '!**/.github/workflows/release.yml'
 
 jobs:
   windows:
@@ -13,17 +27,20 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: x86_64-pc-windows-msvc, aarch64-pc-windows-msvc
-      - name: Build for Windows (x86)
+      - name: Build for x86
         run: cargo build --release --target x86_64-pc-windows-msvc
-      - name: Build for Windows (ARM)
+      - name: Build for ARM
         run: cargo build --release --target aarch64-pc-windows-msvc
-      - name: Save Windows build
+      - name: Prepare saving build
+        run: |
+            mkdir -p target/build
+            mv "target/x86_64-pc-windows-msvc/release/win95-keytool.exe" "target/build/Win95-KeyTool (${{ runner.os }} x86).exe"
+            mv "target/aarch64-pc-windows-msvc/release/win95-keytool.exe" "target/build/Win95-KeyTool (${{ runner.os }} ARM).exe"
+      - name: Save build
         uses: actions/cache@v3
         with:
-          path: |
-            target/x86_64-pc-windows-msv/release
-            target/aarch64-pc-windows-msvc/release
-          key: ${{ runner.os }}
+          path: target/build
+          key: Build-${{ runner.os }}
   macos:
     name: macOS
     runs-on: macos-latest
@@ -34,16 +51,20 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: x86_64-apple-darwin, aarch64-apple-darwin
-      - name: Build for macOS (x86)
+      - name: Build for x86
         run: cargo build --release --target x86_64-apple-darwin
-      - name: Build for macOS (ARM)
+      - name: Build for ARM
         run: cargo build --release --target aarch64-apple-darwin
-      - name: Save macOS build
+      - name: Prepare saving build
+        run: |
+            mkdir -p target/build
+            mv "target/x86_64-apple-darwin/release/win95-keytool" "target/build/Win95-KeyTool (${{ runner.os }} x86)"
+            mv "target/aarch64-apple-darwin/release/win95-keytool" "target/build/Win95-KeyTool (${{ runner.os }} ARM)"
+      - name: Save build
         uses: actions/cache@v3
         with:
-          path: |
-            target/x86_64-apple-darwin/release
-          key: ${{ runner.os }}
+          path: target/build
+          key: Build-${{ runner.os }}
   linux:
     name: Linux
     runs-on: ubuntu-latest
@@ -54,11 +75,14 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: x86_64-unknown-linux-gnu
-      - name: Build for Linux (x86)
+      - name: Build for x86
         run: cargo build --release --target x86_64-unknown-linux-gnu
-      - name: Save Linux build
+      - name: Prepare saving build
+        run: |
+            mkdir -p target/build
+            mv "target/x86_64-unknown-linux-gnu/release/win95-keytool" "target/build/Win95-KeyTool (${{ runner.os }} x86)"
+      - name: Save build
         uses: actions/cache@v3
         with:
-          path: |
-            target/x86_64-unknown-linux-gnu/release
-          key: ${{ runner.os }}
+          path: target/build
+          key: Build-${{ runner.os }}

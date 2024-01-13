@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set release version
+        run: echo "RELEASE_VERSION=0.3.0" >> $GITHUB_ENV
+      - name: Download Windows builds
+        uses: actions/cache@v3
+        with:
+          path: target/build
+          key: Build-Windows
+          restore-keys: Build Windows
+      - name: Upload Windows builds
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: target/build/**
+          archive-format: none
+      - name: Download macOS builds
+        uses: actions/cache@v3
+        with:
+          path: target/build
+          key: Build-macOS
+          restore-keys: Build macOS
+      - name: Upload macOS builds
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: target/build/**
+          archive-format: none
+      - name: Download Linux build
+        uses: actions/cache@v3
+        with:
+          path: target/build
+          key: Build-Linux
+          restore-keys: Build Linux
+      - name: Upload Linux build
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: target/build/**
+          archive-format: none
