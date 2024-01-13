@@ -21,12 +21,12 @@ jobs:
         run: |
             mkdir -p target/build
             mv "target/x86_64-pc-windows-msvc/release/win95-keytool.exe" "target/build/Win95-KeyTool (${{ runner.os }} x86).exe"
-            mv "target/aarch64-pc-windows-msvc/release/win95-keytool" "target/build/Win95-KeyTool (${{ runner.os }} ARM).exe"
+            mv "target/aarch64-pc-windows-msvc/release/win95-keytool.exe" "target/build/Win95-KeyTool (${{ runner.os }} ARM).exe"
       - name: Save build
         uses: actions/cache@v3
         with:
           path: target/build
-          key: ${{ runner.os }}
+          key: Build
   macos:
     name: macOS
     runs-on: macos-latest
@@ -50,7 +50,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: target/build
-          key: ${{ runner.os }}
+          key: Build
   linux:
     name: Linux
     runs-on: ubuntu-latest
@@ -71,4 +71,4 @@ jobs:
         uses: actions/cache@v3
         with:
           path: target/build
-          key: ${{ runner.os }}
+          key: Build
