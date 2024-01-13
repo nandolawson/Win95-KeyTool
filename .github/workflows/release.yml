@@ -24,6 +24,7 @@ jobs:
         with:
           name: release-artifacts
           path: target/build/**
+          archive-format: none
       - name: Download macOS builds
         uses: actions/cache@v3
         with:
@@ -35,6 +36,7 @@ jobs:
         with:
           name: release-artifacts
           path: target/build/**
+          archive-format: none
       - name: Download Linux build
         uses: actions/cache@v3
         with:
@@ -46,3 +48,4 @@ jobs:
         with:
           name: release-artifacts
           path: target/build/**
+          archive-format: none
