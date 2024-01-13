@@ -40,7 +40,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: target/build
-          key: Build ${{ runner.os }}
+          key: Build-${{ runner.os }}
   macos:
     name: macOS
     runs-on: macos-latest
@@ -64,7 +64,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: target/build
-          key: Build ${{ runner.os }}
+          key: Build-${{ runner.os }}
   linux:
     name: Linux
     runs-on: ubuntu-latest
@@ -85,4 +85,4 @@ jobs:
         uses: actions/cache@v3
         with:
           path: target/build
-          key: Build ${{ runner.os }}
+          key: Build-${{ runner.os }}
