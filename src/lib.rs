@@ -4,16 +4,16 @@ pub fn generate_product_key() -> String {
 	let mut rng = rand::thread_rng();
 	loop {
 		// Generate first block of the product key
-		let block_a: u32 = rng
-			.gen_range(100..=998);
+		let block_a: String = format!("{:03}", rng
+			.gen_range(000..=998));
 		// Check if it matches all rules
-		if validate_block_a(block_a) {
+		if validate_block_a(block_a.clone()) {
 			loop {
 				// Generate second block of the product key
-				let block_b: u32 = rng
-					.gen_range(1111111..=8888888);
+				let block_b: String = format!("{:03}", rng
+					.gen_range(1111111..=8888888));
 				// Check if it matches all rules
-				if validate_block_b(block_b) {
+				if validate_block_b(block_b.clone()) {
 					// Merge both blocks and send it back to main function
 					let product_key: String = format!("{}-{}", block_a, block_b);
 					return product_key;
@@ -26,13 +26,9 @@ pub fn generate_product_key() -> String {
 pub fn validate_product_key(product_key: String) -> bool {
 	if validate_format(product_key.clone()) == true {
 		// Get first block from product key
-		let block_a: u32 = product_key[0..=2]
-			.parse()
-			.unwrap_or_default();
+		let block_a: String = product_key[0..=2].to_string();
 		// Get second block from product key
-		let block_b: u32 = product_key[4..=10]
-			.parse()
-			.unwrap_or_default();
+		let block_b: String = product_key[4..=10].to_string();
 		// Multiple conditions to check
 		return match (
 			validate_block_a(block_a),
@@ -42,24 +38,24 @@ pub fn validate_product_key(product_key: String) -> bool {
 	} else {return false;}
 }
 
-fn validate_block_a(block_a: u32) -> bool {
+fn validate_block_a(block_a: String) -> bool {
 	return match (
-		block_a.to_string().len() == 3,
-		block_a % 111 != 0
-		|| block_a / 111 < 3
-		|| block_a / 111 > 9,
+		block_a.len() == 3,
+		block_a.parse::<u32>().unwrap() % 111 != 0
+		|| block_a.parse::<u32>().unwrap() / 111 < 3
+		|| block_a.parse::<u32>().unwrap() / 111 > 9,
 	) {(true, true) => true, _ => false,}
 }
 
-fn validate_block_b(block_b: u32) -> bool {
+fn validate_block_b(block_b: String) -> bool {
 	return match (
+		block_b != "0000000",
 		block_b.to_string().len() == 7,
 		block_b
-			.to_string()
 			.chars()
 			.filter_map(|c| c.to_digit(10))
 			.sum::<u32>() % 7 == 0,
-	) {(true, true) => true,_ => false,}
+	) {(true, true, true) => true,_ => false,}
 }
 
 fn validate_format(product_key: String) -> bool {
