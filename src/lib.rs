@@ -49,13 +49,12 @@ fn validate_block_a(block_a: String) -> bool {
 
 fn validate_block_b(block_b: String) -> bool {
 	return match (
-		block_b != "0000000",
 		block_b.to_string().len() == 7,
 		block_b
 			.chars()
 			.filter_map(|c| c.to_digit(10))
 			.sum::<u32>() % 7 == 0,
-	) {(true, true, true) => true,_ => false,}
+	) {(true, true) => true,_ => false,}
 }
 
 fn validate_format(product_key: String) -> bool {
