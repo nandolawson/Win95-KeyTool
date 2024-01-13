@@ -1,6 +1,18 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - '**/*'
+      - '!README.md'
+      - '!LICENSE'
+      - '!**/.gitignore'
+  pull_request:
+    paths:
+      - '**/*'
+      - '!README.md'
+      - 'LICENSE'
+      - '!**/.gitignore'
 
 jobs:
   windows:
