@@ -1,8 +1,8 @@
 [package]
 name = "win95-keytool"
-description = "Product key generator / validator for Windows 95"
+description = "Product key generator / validator for Windows 95 and other Microsoft products"
 authors = ["Nando Lawson"]
-version = "0.3.0"
+version = "1.0.0"
 readme = "README.md"
 license = "GPL-3.0"
 exclude = ["target/", ".github/", ".gitignore"]
