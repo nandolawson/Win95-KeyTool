@@ -33,7 +33,7 @@ To use the software, it needs to be launched via a terminal. There are two optio
 Launch the software in a terminal window with _generate_ as additional argument. In a fraction of a second, a key will be generated that meets all the requirements for activating Windows 95. The command in the Windows command prompt would look something like this:
 
 ```bat
-.\<PATH_TO_EXECUTABLE\win95-keytool.exe generate
+.\<PATH_TO_EXECUTABLE>\win95-keytool.exe generate
 ```
 
 ### Validate
@@ -41,7 +41,7 @@ Launch the software in a terminal window with _generate_ as additional argument.
 To check the validity of a key, you can use it as an argument. This can be done in the command prompt like this:
 
 ```bat
-.\<PATH_TO_EXECUTABLE\win95-keytool.exe 012-3456789
+.\<PATH_TO_EXECUTABLE>\win95-keytool.exe 012-3456789
 ```
 
 ## Contributing
