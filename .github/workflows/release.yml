@@ -1,9 +1,7 @@
 name: Download Cache
 
 on:
-  push:
-    branches:
-      - main # Ändere dies entsprechend deinem Branch-Namen
+  workflow_dispatch:
 
 jobs:
   download_cache:
