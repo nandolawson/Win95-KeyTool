@@ -1,4 +1,4 @@
-<img src="Logo.webp" width="128"/>
+<img src=".github/Logo.webp" width="128"/>
 
 # Win95-KeyTool
 This software is a cross-plattform generator and validator for Windows 95 keys written in Rust. As it turned out, however, it supposedly works for all Microsoft products that require a 10-digit product key in the following format: _`XXX-XXXXXXX`_
